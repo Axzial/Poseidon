@@ -1,15 +1,55 @@
 package com.nnk.springboot.domain;
 
-import org.springframework.beans.factory.annotation.Required;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotBlank;
-import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity
-@Table(name = "bidlist")
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
+@Table(name = "BidList")
 public class BidList {
-    // TODO: Map columns in data table BIDLIST with corresponding java fields
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Integer BidListId;
+    String account;
+    String type;
+    Double bidQuantity;
+    Double askQuantity;
+    Double bid;
+    Double ask;
+    String benchmark;
+    Timestamp bidListDate;
+    String commentary;
+    String security;
+    String status;
+    String trader;
+    String book;
+    String creationName;
+    Timestamp creationDate;
+    String revisionName;
+    Timestamp revisionDate;
+    String dealName;
+    String dealType;
+    String sourceListId;
+    String side;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        BidList bidList = (BidList) o;
+        return BidListId != null && Objects.equals(BidListId, bidList.BidListId);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

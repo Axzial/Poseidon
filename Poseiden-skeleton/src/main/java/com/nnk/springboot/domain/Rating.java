@@ -1,12 +1,37 @@
 package com.nnk.springboot.domain;
 
+import lombok.*;
+import org.hibernate.Hibernate;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity
-@Table(name = "rating")
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
+@Table(name = "Rating")
 public class Rating {
-    // TODO: Map columns in data table RATING with corresponding java fields
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Integer id;
+    String moodysRating;
+    String sandPRating;
+    String fitchRating;
+    Integer orderNumber;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Rating rating = (Rating) o;
+        return id != null && Objects.equals(id, rating.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
