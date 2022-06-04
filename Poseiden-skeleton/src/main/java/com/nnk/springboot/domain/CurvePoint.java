@@ -13,7 +13,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "CurvePoint")
+@Table
 public class CurvePoint {
 
     @Id

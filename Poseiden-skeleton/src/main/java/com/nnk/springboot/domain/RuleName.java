@@ -11,7 +11,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "RuleName")
+@Table
 public class RuleName {
 
     @Id

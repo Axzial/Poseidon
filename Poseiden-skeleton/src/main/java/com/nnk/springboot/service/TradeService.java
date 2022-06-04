@@ -6,7 +6,12 @@ import com.nnk.springboot.repositories.RatingRepository;
 import com.nnk.springboot.repositories.TradeRepository;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
+@Service
+@Transactional
 @RequiredArgsConstructor
 public class TradeService extends CrudService<Trade> {
     @Getter

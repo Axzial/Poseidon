@@ -11,7 +11,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "Rating")
+@Table
 public class Rating {
 
     @Id

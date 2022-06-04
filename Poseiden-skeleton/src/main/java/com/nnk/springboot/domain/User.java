@@ -17,7 +17,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "Users")
+@Table
 public class User implements UserDetails {
 
     @Id
@@ -69,4 +69,7 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
+
 }
