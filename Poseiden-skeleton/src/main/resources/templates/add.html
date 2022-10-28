@@ -14,7 +14,7 @@
             </div>
 
             <div class="row">
-                <form action="#" th:action="@{/add}" th:object="${add}" method="post" class="form-horizontal"
+                <form action="#" th:action="@{|/${routerPath}/add|}" th:object="${add}" method="post" class="form-horizontal"
                       style="width: 100%">
 
                     <div th:each="field: ${fields}">
@@ -31,7 +31,7 @@
 
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <a class="btn btn-danger btn-sm" href="/user/list">Cancel</a>
+                            <a class="btn btn-danger btn-sm" th:href="@{|/${routerPath}/list|}">Cancel</a>
                             <input class="btn btn-primary btn-sm" type="submit" value="Add">
                         </div>
                     </div>

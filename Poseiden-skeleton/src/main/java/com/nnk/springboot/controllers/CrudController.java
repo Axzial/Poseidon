@@ -33,12 +33,18 @@ public abstract class CrudController<M extends BaseEntity, S extends CrudService
                 .peek(log::info).collect(Collectors.toSet());
     }
 
+    @GetMapping
+    public String redirect() {
+        return "redirect:/list";
+    }
+
     @SneakyThrows
     @GetMapping("/list")
     public String list(M list, Model model) {
         List<M> all = service.findAll();
         model.addAttribute("list", all);
         model.addAttribute("fields", generateFields(list));
+        model.addAttribute("routerPath", getModelIdentifier());
         return "/list";
     }
 
@@ -54,6 +60,8 @@ public abstract class CrudController<M extends BaseEntity, S extends CrudService
     @PostMapping("/add")
     public String add(@Valid @ModelAttribute(name = "add") M add, BindingResult result) {
         if (result.hasErrors()) {
+            log.info(result.getAllErrors());
+            log.error("zerihb viezrvirz");
             return "/add";
         }
         service.create(add);

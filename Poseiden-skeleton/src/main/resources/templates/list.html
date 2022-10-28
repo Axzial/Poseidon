@@ -23,8 +23,8 @@
                         <tr th:each="ent : ${list}" th:object="${ent}">
                             <td th:each="field: ${fields}" style="width: 15%" th:text="*{__${field}__}"></td>
                             <td style="width: 15%" class="text-center">
-                                <a th:href="@{/user/update/{id}(id=${user.id})}">Edit</a>&nbsp;|&nbsp;
-                                <a th:href="@{/user/delete/{id}(id=${user.id})}">Delete</a>
+                                <a th:href="@{|/${routerPath}/update/${ent.id}|}">Edit</a>&nbsp;|&nbsp;
+                                <a th:href="@{|/${routerPath}/delete/${ent.id}|}">Delete</a>
                             </td>
                         </tr>
                     </tbody>
