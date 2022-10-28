@@ -5,12 +5,9 @@ import io.jsonwebtoken.Jwts;
 import lombok.experimental.UtilityClass;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.List;
-
 @UtilityClass
 public class JwtUtils {
     public static final String SECRET_KEY = "testing";
-    // expiration
     public static final long EXPIRATION_TIME = 864_000_000; // 10 days
 
     // get claims
