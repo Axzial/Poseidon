@@ -10,6 +10,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class ApiAuthController {
@@ -33,7 +36,11 @@ public class ApiAuthController {
     @AllArgsConstructor
     @NoArgsConstructor
     private static class LoginDTO {
+        @NotBlank
+        @NotNull
         String username;
+        @NotBlank
+        @NotNull
         String password;
     }
 
