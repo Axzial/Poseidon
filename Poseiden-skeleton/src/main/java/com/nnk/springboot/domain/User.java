@@ -1,5 +1,6 @@
 package com.nnk.springboot.domain;
 
+import com.nnk.springboot.utils.IgnoreField;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -27,6 +28,7 @@ public class User extends BaseEntity implements UserDetails {
     @NotBlank(message = "Username is mandatory")
     private String username;
 
+    @IgnoreField
     private String password;
 
     @NotBlank(message = "FullName is mandatory")

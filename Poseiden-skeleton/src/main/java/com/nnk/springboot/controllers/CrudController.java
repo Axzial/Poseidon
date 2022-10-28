@@ -2,6 +2,7 @@ package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.BaseEntity;
 import com.nnk.springboot.service.CrudService;
+import com.nnk.springboot.utils.IgnoreField;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
@@ -26,16 +27,19 @@ public abstract class CrudController<M extends BaseEntity, S extends CrudService
 
     public Set<String> generateFields(M model) {
         return Arrays.stream(model.getClass().getDeclaredFields())
+                .filter(field -> !field.isAnnotationPresent(IgnoreField.class))
                 .map(Field::getName)
                 .filter(f -> !f.equalsIgnoreCase("id"))
                 .peek(log::info).collect(Collectors.toSet());
     }
 
+    @SneakyThrows
     @GetMapping
-    public String list(Model model) {
+    public String list(M list, Model model) {
         List<M> all = service.findAll();
         model.addAttribute("list", all);
-        return getModelIdentifier() + "/list";
+        model.addAttribute("fields", generateFields(list));
+        return "/list";
     }
 
     @SneakyThrows
