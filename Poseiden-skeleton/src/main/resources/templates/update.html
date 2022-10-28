@@ -17,17 +17,16 @@
                 <form action="#" th:action="@{/__${routerPath}__/update/{id}(id = 2)}" th:object="${update}"
                       method="post" class="form-horizontal" style="width: 100%">
 
-                    <div th:each="field: ${fields}" th:with="f=${field}">
+                    <div th:each="field: ${fields}">
                         <div class="form-group">
-                            <label for="${field}" class="col-sm-2 control-label" th:text="${field}"></label>
+                            <label th:for="__${field}__" class="col-sm-2 control-label" th:text="${field}"></label>
                             <div class="col-sm-10">
-                                <input type="text" th:field="*{__${field}__}" id="${field}" placeholder="${field}"
+                                <input type="text" th:field="*{__${field}__}" th:id="__${field}__" th:placeholder="__${field}__"
                                        class="col-4">
                                 <p class="text-danger" th:if="${#fields.hasErrors(field)}" th:errors="*{__${field}__}"></p>
                             </div>
                         </div>
                     </div>
-
 
                     <div class="form-group">
                         <div class="col-sm-12">
