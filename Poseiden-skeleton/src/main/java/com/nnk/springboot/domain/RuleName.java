@@ -15,11 +15,11 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @Table
-public class RuleName {
+public class RuleName extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    Long id;
     String name;
     String description;
     String json;

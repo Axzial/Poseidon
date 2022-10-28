@@ -43,7 +43,6 @@ public abstract class CrudController<M extends BaseEntity, S extends CrudService
 
     @PostMapping("/add")
     public String add(@Valid @ModelAttribute(name = "add") M add, BindingResult result) {
-        log.info(add.toString());
         if (!result.hasErrors()) {
             service.create(add);
             return "redirect:/" + getModelIdentifier() + "/list";

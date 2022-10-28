@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class RuleNameService extends CrudService<RuleName, Integer> {
+public class RuleNameService extends CrudService<RuleName, Long> {
     @Getter
     private final RuleNameRepository repository;
 }

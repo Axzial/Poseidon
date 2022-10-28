@@ -15,11 +15,11 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @Table
-public class Rating {
+public class Rating extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    Long id;
     String moodysRating;
     String sandPRating;
     String fitchRating;

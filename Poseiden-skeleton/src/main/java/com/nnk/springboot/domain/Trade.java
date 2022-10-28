@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 @ToString
 @RequiredArgsConstructor
 @Table
-public class Trade {
+public class Trade extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class TradeService extends CrudService<Trade, Integer> {
+public class TradeService extends CrudService<Trade, Long> {
     @Getter
     private final TradeRepository repository;
 }
