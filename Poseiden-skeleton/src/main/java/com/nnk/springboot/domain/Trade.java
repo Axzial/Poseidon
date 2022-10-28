@@ -1,11 +1,12 @@
 package com.nnk.springboot.domain;
 
-import lombok.*;
-import org.hibernate.Hibernate;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Objects;
 
 
 @Entity
@@ -18,7 +19,7 @@ public class Trade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer tradeId;
+    Long id;
     String account;
     String type;
     Double buyQuantity;
@@ -40,16 +41,4 @@ public class Trade {
     String sourceListId;
     String side;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Trade trade = (Trade) o;
-        return tradeId != null && Objects.equals(tradeId, trade.tradeId);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }

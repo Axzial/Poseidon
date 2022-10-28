@@ -1,6 +1,9 @@
 package com.nnk.springboot.domain;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -9,21 +12,27 @@ import java.util.Objects;
 
 
 @Entity
+@Table
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table
-public class CurvePoint {
+public class CurvePoint extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Integer id;
+    Long id;
+
     Integer curveId;
+
     Timestamp asOfDate;
+
     Double term;
+
+    @Column(name = "cp_value")
     Double value;
-    Timestamp creationDate;
+
+    Timestamp createdAt;
 
     @Override
     public boolean equals(Object o) {
