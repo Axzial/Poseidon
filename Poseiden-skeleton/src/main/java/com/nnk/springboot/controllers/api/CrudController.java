@@ -3,6 +3,7 @@ package com.nnk.springboot.controllers.api;
 import com.nnk.springboot.domain.BaseEntity;
 import com.nnk.springboot.service.CrudService;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,13 +30,15 @@ public abstract class CrudController<M extends BaseEntity, S extends CrudService
         return getModelIdentifier() + "/list";
     }
 
+    @SneakyThrows
     @GetMapping("/add")
     public String addForm(M add, Model model) {
         model.addAttribute("fields", Arrays.stream(add.getClass().getDeclaredFields())
                 .map(Field::getName)
                 .filter(f -> !f.equalsIgnoreCase("id"))
                 .peek(log::info).collect(Collectors.toSet()));
-        return getModelIdentifier() + "/add";
+        model.addAttribute("add", add.getClass().newInstance());
+        return "/add";
     }
 
     @PostMapping("/add")
@@ -45,7 +48,7 @@ public abstract class CrudController<M extends BaseEntity, S extends CrudService
             service.create(add);
             return "redirect:/" + getModelIdentifier() + "/list";
         }
-        return getModelIdentifier() + "/add";
+        return "/add";
     }
 
     @GetMapping("/update/{id}")
