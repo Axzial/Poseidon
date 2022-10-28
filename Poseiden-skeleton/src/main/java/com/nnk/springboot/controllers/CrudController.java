@@ -65,7 +65,7 @@ public abstract class CrudController<M extends BaseEntity, S extends CrudService
         model.addAttribute("routerPath", getModelIdentifier());
         M update = service.findById(id).orElseThrow();
         model.addAttribute("update", update);
-        model.addAttribute("id", update.getId());
+        model.addAttribute("updateId", update.getId());
         model.addAttribute("fields", generateFields(update));
         return "/update";
     }
