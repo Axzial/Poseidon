@@ -39,6 +39,13 @@ public class UserService extends CrudService<User, Long> implements UserDetailsS
         return repository.findByUsername(s).orElseThrow(UserNotFound::new);
     }
 
+    @Override
+    public User update(User user, Long id) {
+        User u = findById(id).orElseThrow();
+        user.setPassword(u.getPassword());
+        return super.update(user, id);
+    }
+
     public void saveDefaults() {
         if (repository.findByUsername("axzial").isEmpty()) {
             repository.save(User.builder()

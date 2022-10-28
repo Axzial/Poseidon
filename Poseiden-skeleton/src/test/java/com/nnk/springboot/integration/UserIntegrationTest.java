@@ -1,8 +1,8 @@
 package com.nnk.springboot.integration;
 
+import com.nnk.springboot.config.security.utils.JwtUtils;
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.UserRepository;
-import com.nnk.springboot.config.security.utils.JwtUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,10 +21,10 @@ import java.net.URI;
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-public class CurveIntegrationTest extends IntegrationTest {
+public class UserIntegrationTest extends IntegrationTest {
 
     @Autowired
-    UserRepository userService;
+    private UserRepository userService;
 
     private String token;
 
@@ -41,8 +41,8 @@ public class CurveIntegrationTest extends IntegrationTest {
     }
 
     @Test
-    public void getCurvesTest() {
-        testStatus(HttpMethod.GET, URI.create("http://localhost:8080/api/curvePoint"), token, HttpStatus.FOUND);
+    public void getBidListTest() {
+        testStatus(HttpMethod.GET, URI.create("http://localhost:8080/api/user"), token, HttpStatus.FOUND);
     }
 
 }

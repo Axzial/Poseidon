@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class CrudService<E extends BaseEntity, I> {
+public abstract class CrudService<E extends BaseEntity, I extends Long> {
 
     public abstract JpaRepository<E, I> getRepository();
 
@@ -14,7 +14,7 @@ public abstract class CrudService<E extends BaseEntity, I> {
         return getRepository().save(e);
     }
 
-    public E update(E e, Long id) {
+    public E update(E e, I id) {
         e.setId(id);
         return getRepository().save(e);
     }
