@@ -1,22 +1,19 @@
 package com.nnk.springboot.config;
 
-import com.nnk.springboot.domain.User;
 import com.nnk.springboot.security.filter.JWTAuthenticationFilter;
 import com.nnk.springboot.service.UserService;
-import com.nnk.springboot.utils.OptionalUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
-
-import static org.springframework.security.config.Customizer.withDefaults;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsUtils;
 
 @Configuration
+@EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
 
@@ -24,25 +21,26 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests((authz) -> authz
-                        .anyRequest().authenticated()
-                )
-                .httpBasic(withDefaults());
+        http.csrf()
+                .disable()
+                .formLogin().disable()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .httpBasic()
+                .disable()
+                .authorizeRequests()
+                .antMatchers("/", "/css/**", "/login")
+                .permitAll()
+                .requestMatchers(CorsUtils::isPreFlightRequest)
+                .permitAll()
+                .anyRequest()
+                .permitAll();
+
+
+        http.addFilterBefore(new JWTAuthenticationFilter(userService), UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return (authentication -> {
-            User user = OptionalUtils.optionally(userService.findByUsername((String) authentication.getPrincipal()), RuntimeException.class);
-
-            return authentication;
-        });
-    }
 }
