@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class RatingService extends CrudService<Rating> {
+public class RatingService extends CrudService<Rating, Integer> {
     @Getter
     private final RatingRepository repository;
 }

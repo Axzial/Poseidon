@@ -11,7 +11,9 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class BidListService extends CrudService<BidList> {
+public class BidListService extends CrudService<BidList, Long> {
+
     @Getter
     private final BidListRepository repository;
+
 }

@@ -1,33 +1,39 @@
 package com.nnk.springboot.service;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-public abstract class CrudService<E> {
+public abstract class CrudService<E, I> {
 
-    public abstract JpaRepository<E, Integer> getRepository();
+    public abstract JpaRepository<E, I> getRepository();
 
-    public E save(E e){
+    public E create(E e) {
         return getRepository().save(e);
-    };
+    }
 
-    public E update(E e){
+    ;
+
+    public E update(E e) {
         return getRepository().save(e);
-    };
+    }
 
-    public Optional<E> findById(Integer id){
+    ;
+
+    public Optional<E> findById(I id) {
         return getRepository().findById(id);
-    };
+    }
 
-    public List<E> findAll(){
+    ;
+
+    public List<E> findAll() {
         return getRepository().findAll();
     }
 
-    public void delete(Integer id){
+    public void delete(I id) {
         getRepository().deleteById(id);
-    };
+    }
+
+    ;
 }
