@@ -23,22 +23,18 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf()
                 .disable()
-                .formLogin().disable()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .httpBasic()
-                .disable()
                 .authorizeRequests()
-                .antMatchers("/", "/css/**", "/login")
+                .antMatchers("/", "/css/**", "/login", "/register")
                 .permitAll()
                 .requestMatchers(CorsUtils::isPreFlightRequest)
                 .permitAll()
                 .anyRequest()
-                .permitAll();
+                .authenticated();
 
-
-        http.addFilterBefore(new JWTAuthenticationFilter(userService), UsernamePasswordAuthenticationFilter.class);
+        http.antMatcher("/api/**").addFilterBefore(new JWTAuthenticationFilter(userService), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

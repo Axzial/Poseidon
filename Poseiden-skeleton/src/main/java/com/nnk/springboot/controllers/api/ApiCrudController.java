@@ -10,7 +10,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Log4j2
-public class ApiCrudController<M extends BaseEntity, S extends CrudService<M, Long>> {
+public abstract class ApiCrudController<M extends BaseEntity, S extends CrudService<M, Long>> {
 
     private final S service;
 
@@ -29,7 +29,7 @@ public class ApiCrudController<M extends BaseEntity, S extends CrudService<M, Lo
         return service.create(create);
     }
 
-    @DeleteMapping("/{id}")
+    @PatchMapping("/{id}")
     public M update(@PathVariable Long id, @RequestBody M update){
         return service.update(update, id);
     }
