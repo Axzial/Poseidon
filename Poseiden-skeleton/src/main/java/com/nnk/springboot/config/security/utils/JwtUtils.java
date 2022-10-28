@@ -1,4 +1,4 @@
-package com.nnk.springboot.security.utils;
+package com.nnk.springboot.config.security.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

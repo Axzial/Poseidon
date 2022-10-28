@@ -1,6 +1,6 @@
-package com.nnk.springboot.security.filter;
+package com.nnk.springboot.config.security.filter;
 
-import com.nnk.springboot.security.utils.JwtUtils;
+import com.nnk.springboot.config.security.utils.JwtUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -34,7 +34,7 @@ public abstract class CrudController<M extends BaseEntity, S extends CrudService
     }
 
     @SneakyThrows
-    @GetMapping
+    @GetMapping("/list")
     public String list(M list, Model model) {
         List<M> all = service.findAll();
         model.addAttribute("list", all);

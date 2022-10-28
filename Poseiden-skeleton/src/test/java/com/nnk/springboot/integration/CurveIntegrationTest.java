@@ -2,7 +2,7 @@ package com.nnk.springboot.integration;
 
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.UserRepository;
-import com.nnk.springboot.security.utils.JwtUtils;
+import com.nnk.springboot.config.security.utils.JwtUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
