@@ -1,6 +1,5 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.controllers.api.CrudController;
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.service.UserService;
 import org.springframework.stereotype.Controller;

@@ -1,6 +1,5 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.controllers.api.CrudController;
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.service.BidListService;
 import org.springframework.stereotype.Controller;
